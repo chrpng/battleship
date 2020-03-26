@@ -53,10 +53,10 @@ function App() {
     setPlayer1Board([...player1.gameboard.getBoard()]);
   }
 
-  const handleCellClick = (e) => {
+  const handleCellClick = (row, col) => {
     if(player1Turn) {
       //Player 1 attacks Player 2's gameboard
-      playerTurn(player2.gameboard, e.target.dataset.row, e.target.dataset.col);
+      playerTurn(player2.gameboard, row, col);
     }
   }
 

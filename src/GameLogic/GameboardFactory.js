@@ -39,7 +39,7 @@ function Gameboard(name) {
     return true;
   }
 
-  const moveShip = (toX, toY, ship) => {
+  const moveShip = (toCol, toRow, ship) => {
     // remove ship's old location from board
     deleteShip(ship);
 
@@ -47,7 +47,7 @@ function Gameboard(name) {
     ships = ships.filter(currShip => currShip !== ship);
 
     //generate new ship
-    placeNewShip(toX, toY, ship.length, ship.isHorizontal);
+    placeNewShip(toCol, toRow, ship.length, ship.isHorizontal);
   }
 
   const deleteShip = (ship) => {
@@ -56,14 +56,14 @@ function Gameboard(name) {
     })
   }
 
-  const canMoveShip = (toX, toY, ship) => {
+  const canMoveShip = (toCol, toRow, ship) => {
     return true;
-    if (toX < 0 || toX >= 10 || toY < 0 || toY >= 10) return false;
+    if (toCol < 0 || toCol >= 10 || toRow < 0 || toRow >= 10) return false;
     switch(ship.isHorizontal) {
       case true:
-        return toX + ship.length <= 10;
+        return toCol + ship.length <= 10;
       case false:
-        return toY + ship.length <= 10;
+        return toRow + ship.length <= 10;
       default:
         break;
     }
