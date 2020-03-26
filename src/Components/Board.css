@@ -1,0 +1,20 @@
+.board-grid {
+  width: 400px;
+  height: 400px;
+  display: grid;
+  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  list-style-type: none;
+  background-color: rgb(180, 183, 209);
+  border-top: 1px solid rgb(180, 183, 209);
+  border-left: 1px solid rgb(180, 183, 209);
+  box-sizing: content-box;
+}
+
+.cell {
+  border-bottom: 1px solid rgb(180, 183, 209);
+  border-right: 1px solid rgb(180, 183, 209);
+  box-sizing: border-box;
+  background-color: white;
+
+  grid-area: span 1 / span 1;
+}
