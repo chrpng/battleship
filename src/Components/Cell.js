@@ -1,20 +1,6 @@
 import React from 'react';
 
-function Cell({ val, coord, playerBoard, setPlayerBoard, handleCellClick }) {
-  // const { updatePlayer1Board, canUpdatePlayer1Board } = useContext(Context);
-  // const [{ isOver }, drop] = useDrop({
-  //   accept: 'ship',
-  //   canDrop: (item, monitor) => {
-  //     return true;
-  //     return monitor.isOver();
-  //     return canUpdatePlayer1Board(item.row, item.col, x, y);
-  //   },
-  //   drop: (item) => {
-  //     console.log(item);
-  //     updatePlayer1Board(item.row, item.col, x, y);
-  //     return undefined;
-  //   },
-  // })
+function Cell({ val, coord, handleCellClick }) {
 
   const [row, col] = coord;
   const gridRowStart = row + 1;
@@ -26,15 +12,22 @@ function Cell({ val, coord, playerBoard, setPlayerBoard, handleCellClick }) {
     gridColumnStart: `${gridColumnStart}`,
     gridColumnEnd: 'span 1',
   }
+
+  const cellClass = val === 'H' ? 'cell-x hit' 
+                  : val === 'M' ? 'cell-x'
+                  : '';
+
+  const cellContents = val === 'H' || val === 'M' ? 'X' : null;
+
   return (
     <li
-      className="cell" 
-      onClick={(e) => handleCellClick(e.target.dataset.row, e.target.dataset.col)} 
+      className={`cell ${cellClass}`}
+      onClick={handleCellClick} 
       data-row={row} 
       data-col={col}
       style={cellStyle}
     >
-      {val}
+      {cellContents}
     </li>
   )
 }

@@ -8,19 +8,20 @@ import './Board.css';
 import Cell from './Cell';
 import Ship from './Ship';
 
-function Board({ playerBoard, setPlayerBoard, handleCellClick, ships }) {
-  const { updatePlayer1Board, canUpdatePlayer1Board } = useContext(Context);
-  const [{ isOver }, drop] = useDrop({
+function Board({ playerBoard, handleCellClick, ships }) {
+  const { movePlayer1Board, canMovePlayer1Board, isStart, isPlayer1Turn } = useContext(Context);
+  const [, drop] = useDrop({
     accept: 'ship',
     canDrop: (item, monitor) => {
-      return true;
-      return monitor.isOver();
+      const offset = monitor.getDifferenceFromInitialOffset();
+      const { toRow, toCol } = calcDropLocation(item.row, item.col, offset);
+      return !isStart && canMovePlayer1Board(item.row, item.col, toRow, toCol);
     },
     drop: (item, monitor) => {
       console.log(item);
       const offset = monitor.getDifferenceFromInitialOffset();
       const { toRow, toCol } = calcDropLocation(item.row, item.col, offset);
-      updatePlayer1Board(item.row, item.col, toRow, toCol);
+      movePlayer1Board(item.row, item.col, toRow, toCol);
       return undefined;
     },
   })
@@ -31,26 +32,18 @@ function Board({ playerBoard, setPlayerBoard, handleCellClick, ships }) {
     return { toRow, toCol }
   }
 
-  if (typeof playerBoard === 'undefined') return 'No board loaded';
-  //if (Object.entries(playerGameboard).length === 0) return 'Board has no entries';
-
-  //const ships = playerGameboard.getShips();
-
-  const renderCells = () => {
-    return playerBoard.map((row, rowIdx) => 
+  const renderCells = () => (
+    playerBoard ? playerBoard.map((row, rowIdx) => 
       row.map((col, colIdx) => 
         <Cell
           key={`r${rowIdx}c${colIdx}`} 
           coord={[rowIdx, colIdx]}
-          playerBoard={playerBoard}
-          setPlayerBoard={setPlayerBoard}
           handleCellClick={handleCellClick}
           val={col}
         />
       )
-    )
-  }
-
+    ) : null
+  )
 
   const renderShips = () => (
     ships ? ships.map((ship, idx) => 
@@ -63,12 +56,8 @@ function Board({ playerBoard, setPlayerBoard, handleCellClick, ships }) {
     ) : null
   )
 
-  // function handleCellClick(toX, toY) {
-  //   playerBoard.moveShip(toX, toY);
-  //   setPlayerBoard(playerBoard);
-  // }
   return (
-    <ul className="board-grid" ref={drop}>
+    <ul className={`board-grid ${!ships && isPlayer1Turn ? 'attackable' : ''}`} ref={drop}>
       {renderShips()}
       {renderCells()}
     </ul>

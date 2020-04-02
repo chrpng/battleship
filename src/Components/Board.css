@@ -1,20 +1,79 @@
 .board-grid {
-  width: 400px;
-  height: 400px;
   display: grid;
-  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  grid-template: repeat(10, 40px) / repeat(10, 40px);
   list-style-type: none;
   background-color: rgb(180, 183, 209);
-  border-top: 1px solid rgb(180, 183, 209);
-  border-left: 1px solid rgb(180, 183, 209);
+  border: 1px solid rgb(180, 183, 209);
   box-sizing: content-box;
 }
 
+.ship {
+  position: relative;
+  z-index: 1;
+}
+
 .cell {
-  border-bottom: 1px solid rgb(180, 183, 209);
-  border-right: 1px solid rgb(180, 183, 209);
+  box-shadow: 0 0 0 1px rgb(180, 183, 209);
+  color: rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   background-color: white;
-
   grid-area: span 1 / span 1;
+
+  font-size: 25px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.attackable .cell:not(.cell-x):hover {
+  box-shadow: 0 0 0 2px rgb(223, 83, 83);
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.cell-x {
+  animation: 0.5s linear rotate;
+}
+
+.attackable .hit {
+  background: rgb(255, 58, 58);
+  animation: 0.5s linear rotate-red;
+}
+
+@keyframes rotate-red {
+  0% { 
+    transform: rotateY(0deg);
+    background: white; 
+    color: transparent;
+  }
+  50% { 
+    background: white;
+    color: transparent;
+  }
+  51% { 
+    background: red; 
+    color: rgba(0, 0, 0, 0.5);
+  }
+  100% { 
+    transform: rotateY(180deg);
+    background: red; 
+  }
+}
+
+@keyframes rotate {
+  0% { 
+    transform: rotateY(0deg);
+    color: transparent;
+  }
+  50% { 
+    color: transparent;
+  }
+  51% { 
+    color: rgba(0, 0, 0, 0.5);
+  }
+  100% { 
+    transform: rotateY(180deg);
+  }
 }

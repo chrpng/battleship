@@ -8,14 +8,33 @@ const createShipCoords = (row, col, length, isHorizontal) => {
   return coordsArr;
 }
 
+const createAdjacentCoords = (row, col, length, isHorizontal) => {
+  const adjacentArr = [];
+
+  for (let i = -1; i < length + 1; i++) {
+    if(isHorizontal) {
+      if(i === -1 || i === length) adjacentArr.push({ row: row    , col: col + i })
+      adjacentArr.push({ row: row - 1, col: col + i })
+      adjacentArr.push({ row: row + 1, col: col + i })
+    } else {
+      if(i === -1 || i === length) adjacentArr.push({ row: row + i, col: col     })
+      adjacentArr.push({ row: row + i, col: col - 1 })
+      adjacentArr.push({ row: row + i, col: col + 1 })
+    }
+  }
+
+  return adjacentArr;
+}
+
 function Ship(row, col, length = 1, isHorizontal = true) {
   let health = length;
   const shipCoordsArr = createShipCoords(row, col, length, isHorizontal);
+  const shipAdjacentArr = createAdjacentCoords(row, col, length, isHorizontal);
 
   const getShipCoordsArr = () => shipCoordsArr;
+  const getShipAdjacentArr = () => shipAdjacentArr;
 
   const hit = () => {
-    console.log('hit!')
     health--;
   };
 
@@ -26,6 +45,7 @@ function Ship(row, col, length = 1, isHorizontal = true) {
 
   return {
     getShipCoordsArr,
+    getShipAdjacentArr,
     get length() { return length },
     get isHorizontal() { return isHorizontal },
     hit,

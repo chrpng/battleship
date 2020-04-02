@@ -1,12 +1,85 @@
 .App {
+  font-family: Helvetica, Arial, sans-serif;
   text-align: center;
 }
 .App-header {
   background-color: #282c34;
   color: white;
+  font-size: 24px;
+  padding: 10px 0;
+  margin-bottom: 24px;
 }
 
 .boards-flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
+
+.board-grid {
+  flex-shrink: 0;
+}
+
+.middle-console {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 100px 0;
+  flex-basis: 200px;
+}
+
+.middle-console > * {
+  width: 120px;
+}
+
+button {
+  border-width: 2px;
+  border-style: solid;
+  padding: 4px;
+  border-color: rgb(180, 183, 209);
+  outline: none;
+  cursor: pointer;
+}
+
+button:not(.disabled):hover {
+  border-color: rgb(100, 235, 88);
+}
+
+.start-btn {
+  animation: 0.6s ease-out infinite alternate-reverse red-alert;
+}
+
+@keyframes red-alert {
+  100% { 
+    border-color: rgb(59, 185, 10); 
+  }
+}
+
+.game-text {
+  margin-top: 10px;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+@media (max-width: 1000px) {
+  .boards-flex {
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .middle-console {
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: stretch;
+    padding: 24px 0;
+    flex-basis: 0;
+    flex-wrap: wrap;
+  }
+
+  .middle-console > * {
+    width: 50%;
+  }
+}
+
