@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f60d9876c375973fc2e3e18f4c04b4f2",
+    "revision": "56dd29ab95d8449cc87b2bb9e30f5e01",
     "url": "/odin-battleship/index.html"
   },
   {
-    "revision": "908f2ebf5db22b8771e9",
-    "url": "/odin-battleship/static/css/main.e7b5ded8.chunk.css"
+    "revision": "0f3decd1c12257a079b6",
+    "url": "/odin-battleship/static/css/main.6372fe19.chunk.css"
   },
   {
     "revision": "318e027604a99ec78c29",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/odin-battleship/static/js/2.e278d6b4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "908f2ebf5db22b8771e9",
-    "url": "/odin-battleship/static/js/main.cb19f6c3.chunk.js"
+    "revision": "0f3decd1c12257a079b6",
+    "url": "/odin-battleship/static/js/main.36ad4a91.chunk.js"
   },
   {
     "revision": "e19e22523a67d6d9b62d",

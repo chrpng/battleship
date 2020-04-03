@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/odin-battleship/precache-manifest.634e2ff0e25608bd094b32dece67b9e8.js"
+  "/odin-battleship/precache-manifest.592bb1fe91efc5d8cab54e830bedb5cb.js"
 );
 
 self.addEventListener('message', (event) => {
