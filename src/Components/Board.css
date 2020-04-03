@@ -26,7 +26,7 @@
   align-items: center;
 }
 
-.attackable .cell:not(.cell-x):hover {
+.enemy.can-attack .cell:not(.cell-x):hover {
   box-shadow: 0 0 0 2px rgb(223, 83, 83);
   position: relative;
   z-index: 1;
@@ -37,7 +37,7 @@
   animation: 0.5s linear rotate;
 }
 
-.attackable .hit {
+.enemy .hit {
   background: rgb(255, 58, 58);
   animation: 0.5s linear rotate-red;
 }

@@ -57,7 +57,7 @@ function Board({ playerBoard, handleCellClick, ships }) {
   )
 
   return (
-    <ul className={`board-grid ${!ships && isPlayer1Turn ? 'attackable' : ''}`} ref={drop}>
+    <ul className={`board-grid ${!ships ? 'enemy' : ''} ${isStart && isPlayer1Turn ? 'can-attack' : ''}`} ref={drop}>
       {renderShips()}
       {renderCells()}
     </ul>

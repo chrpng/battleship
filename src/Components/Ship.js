@@ -22,7 +22,7 @@ function Ship({ coord, length, isHorizontal }) {
     border: '2px solid #0000FF',
     gridColumnStart: `${gridColumnStart}`,
     gridRowStart: `${gridRowStart}`,
-    opacity: isDragging ? 0.2 : 0.6,
+    opacity: isDragging ? 0.2 : 0.4,
   }
   shipStyle['gridColumnEnd'] = isHorizontal ? `span ${length}` : 'span 1';
   shipStyle['gridRowEnd'] = isHorizontal ? 'span 1' : `span ${length}`;
